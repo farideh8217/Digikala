@@ -30,6 +30,7 @@ class MyApp{
     }
     public function parsurl($url)
     {
+        $url = rtrim($url,"/");
         $url = explode("/",$url);
         return $url;
     }

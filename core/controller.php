@@ -9,4 +9,10 @@ class controller{
         require ("views/".$viewurl.".php");
         require ("footer.php");
     }
+    public function model($modelurl)
+    {
+        require ("models/model_".$modelurl.".php");
+        $classname = "model_".$modelurl;
+        $this->model = new $classname;
+    }
 }

@@ -12,7 +12,7 @@
     </style>
 
 
-    <php 
+    <?php
     $productInfo=$data['productInfo'];
 
     if($productInfo['special']==1) {
@@ -28,7 +28,7 @@
 </div>
 
 
-<php  require('gallery.php'); ?>
+<?php  require('gallery.php'); ?>
 
 
 

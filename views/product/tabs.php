@@ -235,11 +235,11 @@
     <section id="questions">
     </section>
 
-    <php 
-    /*require ('tab1.php');
+    <?php
+    require ('tab1.php');
     require ('tab2.php');
     require ('tab3.php');
-    require ('tab4.php');*/
+    require ('tab4.php');
     ?>
 
 </div>
@@ -271,7 +271,7 @@
 
     }
 
-    $('.<=php $data['activeTab'] ?>').trigger('click');
+    $('.<?=php $data['activeTab'] ?>').trigger('click');
 
 
   
