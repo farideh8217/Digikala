@@ -207,15 +207,12 @@
 
     <div id="slider2_content">
 
-        <php 
+        <?php
+            $slider2 = $data[1];
+            //$date_end = $data[2];
+            foreach ($slider2 as $row) {?>
 
-        $slider2 = $data[1];
-        $date_end = $data[2];
-        foreach ($slider2 as $row) {
-
-            ?>
-
-            <a class="item" href="<=php URL ?>product/index/<=php $row['id']; ?>">
+            <a class="item" href="<=? URL ?>product/index/<=? $row['id']; ?>">
                 <div class="slider2_content_right">
 
                     <p class="title">
@@ -224,10 +221,10 @@
                     <div class="price_info">
 
                         <div class="price_info_old yekan">
-                            <=php $row['price'] ?>
+                            <?= $row["price"] ?>
                         </div>
                         <div class="price_info_new yekan">
-                            <=php $row['price_total']; ?>
+<!--                            //<=? $row['price_total'] ?>-->
                            تومان
                         </div>
 
@@ -244,34 +241,36 @@
                 <div class="slider2_content_left">
 
                     <p class="yekan" style="font-size: 15pt;text-align: center;">
-                        <=php $row['title']; ?>
+                        <?= $row["title"] ?>
                     </p>
 
-                    <img src="public/images/products/<=php $row['id']; ?>/product_220.jpg">
+                   <img src="public/images/products/<?= $row["id"] ?>/product_220.jpg">
 
                 </div>
             </a>
 
 
-        <php  } ?>
+        <?php  } ?>
 
 
     </div>
     <div id="slider2_navigator">
 
         <ul>
-            <php 
+            <?php
 
-            $slider2 = $data[1];
-            foreach ($slider2 as $row) {
+                $slider2 = $data[1];
+                $date_end = $data[2];
+
+                foreach ($slider2 as $row) {
 
                 ?>
                 <li>
                     <a>
-                        <=php $row['title']; ?>
+                        <?= $row["title"] ?>
                     </a>
                 </li>
-            <php  } ?>
+            <?php  } ?>
 
         </ul>
 
@@ -287,7 +286,7 @@
     $('.flipTimer').flipTimer({
 
         direction: 'down',
-        date: '<php  echo $date_end; ?>',
+        date: '<?php  echo $date_end; ?>',
         callback: function () {
             $('.slider2_content_right').css('opacity', .4);
             $('.slider2_content_left').css('opacity', .4);

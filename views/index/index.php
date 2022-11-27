@@ -1,3 +1,6 @@
+<?php
+
+?>
 <div id="main" style="width: 1200px;margin:10px auto;">
 
     <div id="banner_top" style="width: 100%;height: 138px;">
