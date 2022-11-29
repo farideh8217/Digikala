@@ -1,8 +1,5 @@
-<php 
-
-$option=Model::getoption();
-
-
+<?php
+$option=Model::get_option();//چون از نوع استاتیک هست نیازی نیست آبجکت بسازیم
 ?>
 <style>
     footer {
@@ -73,7 +70,8 @@ $option=Model::getoption();
                 <li>
                     <a class="yekan">
 
-                        <=php $option['tel']; ?>
+                        <?= $option['tel']; ?>
+
                         <i style="background-position: -397px -420px; "></i>
 
                     </a>
@@ -87,7 +85,7 @@ $option=Model::getoption();
                 </li>
                 <li>
                     <a class="yekan">
-                        <=php $option['email']; ?>
+                        <?= $option['email']; ?>
                         <i style="background-position: -321px -420px; "></i>
 
                     </a>

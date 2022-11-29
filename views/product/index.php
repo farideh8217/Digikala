@@ -13,8 +13,7 @@
 
 
     <?php
-    $productInfo=$data['productInfo'];
-
+    $productInfo=$data['productinfo'];
     if($productInfo['special']==1) {
         require('offer.php');
     }

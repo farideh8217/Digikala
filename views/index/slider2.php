@@ -209,10 +209,12 @@
 
         <?php
             $slider2 = $data[1];
+
+
             //$date_end = $data[2];
             foreach ($slider2 as $row) {?>
 
-            <a class="item" href="<=? URL ?>product/index/<=? $row['id']; ?>">
+            <a class="item" href="<?= URL ?>product/index/<?= $row['id']; ?>">
                 <div class="slider2_content_right">
 
                     <p class="title">
@@ -224,7 +226,7 @@
                             <?= $row["price"] ?>
                         </div>
                         <div class="price_info_new yekan">
-<!--                            //<=? $row['price_total'] ?>-->
+                            <?= $row['total_price'] ?>
                            تومان
                         </div>
 

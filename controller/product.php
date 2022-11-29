@@ -1,10 +1,15 @@
 <?php
-class product extends controller {
+
+class product extends controller
+{
     public function __construct()
     {
     }
-    public function index()
+
+    public function index($id)
     {
-        $this->view("product/index");
+        $productinfo = $this->model->product_info($id);
+        $data = ['productinfo'=>$productinfo];
+        $this->view("product/index",$data);
     }
 }

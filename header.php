@@ -108,12 +108,12 @@
 
                     <span
                         style="width: 20px;height: 20px;background: url(public/images/lock.png);display: block;float: right;"></span>
-                    <a class="yekan fontsm" href="<=php URL ?>login" style="float: right;margin-right: 10px;">
+                    <a class="yekan fontsm" href="<?= URL ?>login" style="float: right;margin-right: 10px;">
                         فروشگاه اینترنتی دیجی کالا،وارد شوید
                     </a>
                     <span
                         style="width: 20px;height: 20px;background: url(public/images/signup.png);display: block;float: right;margin-right: 20px;"></span>
-                    <a class="yekan fontsm" href="<=php URL ?>register" style="float: right;margin-right: 10px;">
+                    <a class="yekan fontsm" href="<?= URL ?>register" style="float: right;margin-right: 10px;">
                         ثبت نام کنید
                     </a>
 

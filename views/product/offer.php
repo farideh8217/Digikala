@@ -93,7 +93,7 @@
 <span class="discount">
 <span class="right yekan">
 
-<span class="number"><=php $productInfo['price_discount']; ?></span>
+<span class="number"><?= $productInfo['price_discount']; ?></span>
 
                          <span class="tuman">
 تومان
@@ -120,7 +120,7 @@
     $('.flipTimer').flipTimer({
 
         direction: 'down',
-        date: '<=php $productInfo['date_special']; ?>',
+        date: '<?= $productInfo['date_special']; ?>',
         callback: function () {
             $('.slider2_content_right').css('opacity', .4);
             $('.slider2_content_left').css('opacity', .4);

@@ -19,10 +19,12 @@ class MyApp{
             $this->params = array_values($url);
         }
         $controllerurl = 'controller/'.$this->controloller.'.php';
+
         if(file_exists($controllerurl)) {
             require ($controllerurl);
             $obj = new $this->controloller;
             $obj->model($this->controloller);
+
             if(method_exists($obj,$this->method)) {
                 call_user_func_array([$obj, $this->method], $this->params);
             }
