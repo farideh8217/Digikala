@@ -38,17 +38,18 @@ class Model{
         return [$price_discount,$price_total];
     }
 
-    function doselect($sql,$values=[],$fetch='',$fetchstyle=PDO::FETCH_ASSOC)
+    function doSelect($sql, $values = array(), $fetch = '', $fetchStyle = PDO::FETCH_ASSOC)
     {
+
         $stmt = self::$conn->prepare($sql);
-        foreach ($values as $key=>$value){
-            $stmt->bindValue($key+1,$value);
+        foreach ($values as $key => $value) {
+            $stmt->bindValue($key + 1, $value);
         }
         $stmt->execute();
-        if($fetch=='') {
-            $result = $stmt->fetchAll($fetchstyle);
-        }else{
-            $result = $stmt->fetch($fetchstyle);
+        if ($fetch == '') {
+            $result = $stmt->fetchAll($fetchStyle);
+        } else {
+            $result = $stmt->fetch($fetchStyle);
         }
         return $result;
     }

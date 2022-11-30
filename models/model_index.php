@@ -8,24 +8,21 @@ class model_index extends Model {
     public function get_slider1(){
 
         $sql = "SELECT * FROM tbl_slider1";
-        $stmt = self::$conn->prepare($sql);
-        $stmt->execute();
-        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        $result = $this->doselect($sql);
         return $result;
     }
 
     public function get_slider2(){
 
-        $sql = "SELECT * FROM tbl_product WHERE special=1";
-        $stmt = self::$conn->prepare($sql);
-        $stmt->execute();
-        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        $sql = "SELECT * FROM tbl_product WHERE special=?";
+        $result = $this->doselect($sql,[1]);
 
 
         foreach ($result as $key=>$value){
-            $discount = $value["discount"];
-            $price = $value["price"];
-            $total_price = ((100-$discount)*$price)/100;
+//            $discount = $value["discount"];
+//            $price = $value["price"];
+//            $total_price = ((100-$discount)*$price)/100;
+            $total_price = $this->calculateDiscount($value["price"],$value["discount"])[1];//بجای تکرار کدهای بالا از این فانکشن استاده میکنیم
             /*
              * سطرجدید به جدول اضافه کردیم که مقدار تخفیف را حساب کند
              */
@@ -49,39 +46,29 @@ class model_index extends Model {
     function onlyclicksite()
     {
         $sql = "SELECT * FROM tbl_product WHERE onlyclicksite=1";
-        $stmt = self::$conn->prepare($sql);
-        $stmt->execute();
-        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        $result = $this->doselect($sql);
         return $result;
     }
 
     function mostview()
     {
         $sql = "SELECT * FROM tbl_option WHERE setting = 'limit_slider'";
-        $stmt = self::$conn->prepare($sql);
-        $stmt->execute();
-        $result2 = $stmt->fetch(PDO::FETCH_ASSOC);
+        $result2 = $this->doselect($sql,[],1);
         $limit = $result2["value"];
 
-        $sql = "SELECT * FROM `tbl_product` order by `view` DESC LIMIT ".$limit." ";
-        $stmt = self::$conn->prepare($sql);
-        $stmt->execute();
-        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        $sql = "SELECT * FROM `tbl_product` order by `view` DESC LIMIT ".$limit."";
+        $result = $this->doselect($sql);
         return $result;
     }
 
     function last_product()
     {
         $sql = "SELECT * FROM tbl_option WHERE setting = 'limit_slider'";
-        $stmt = self::$conn->prepare($sql);
-        $stmt->execute();
-        $result2 = $stmt->fetch(PDO::FETCH_ASSOC);
+        $result2 = $this->doselect($sql,[],1);
         $limit = $result2["value"];
 
         $sql = "SELECT * FROM `tbl_product` order by `id` DESC LIMIT ".$limit."";
-        $stmt = self::$conn->prepare($sql);
-        $stmt->execute();
-        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        $result = $this->doselect($sql);
         return $result;
     }
 }
