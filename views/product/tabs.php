@@ -235,12 +235,12 @@
     <section id="questions">
     </section>
 
-    <?php
-    require ('tab1.php');
-    require ('tab2.php');
-    require ('tab3.php');
-    require ('tab4.php');
-    ?>
+<!--    --><?php
+//    require ('tab1.php');
+//    require ('tab2.php');
+//    require ('tab3.php');
+//    require ('tab4.php');
+//    ?>
 
 </div>
 
@@ -262,7 +262,7 @@
         var index = tag.index();
         var section_selected = $('#tabchilds section').eq(index);
 
-        var url = '<=php URL ?>product/tab/<=php $productInfo['id'] ?>/<=php $productInfo['cat'] ?>';
+        var url = '<?= URL ?>/product/tab/<?= $productInfo['id'] ?>/<?= $productInfo['id_category'] ?>';
         var data = {'number': index};
         $.post(url, data, function (msg) {
             section_selected.html(msg);
@@ -271,7 +271,7 @@
 
     }
 
-    $('.<?=php $data['activeTab'] ?>').trigger('click');
+    //    $('.<?php /* $data['activeTab']*/  ?>').trigger('click');
 
 
   

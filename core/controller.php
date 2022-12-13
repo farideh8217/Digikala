@@ -19,11 +19,16 @@ class controller
 
     }
 
-    public function view($viewurl, $data = [])
+    public function view($viewurl, $data = [],$noIncludeHeader='',$noIncludeFooter='')
     {
-        require("header.php");
+        if($noIncludeHeader == ''){
+            require("header.php");
+        }
         require("views/" . $viewurl . ".php");
-        require("footer.php");
+        if($noIncludeFooter == '') {
+            require("footer.php");
+        }
+
     }
 
 }

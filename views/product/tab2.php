@@ -39,32 +39,33 @@
 </style>
 
 
-<php 
-
+<?php
 $fanni = $data[0];
 
 foreach ($fanni as $attr_parent) {
     $children = $attr_parent['children'];
+//    print "===>";
+//    print_r($children);
     ?>
 
 
     <h4>
-        <=php $attr_parent['title'] ?>
+        <?= $attr_parent['title'] ?>
     </h4>
 
-    <php  foreach ($children as $child) { ?>
+    <?php  foreach ($children as $child) { ?>
         <div class="row">
             <div class="right">
-                <=php $child['title'] ?>
+                <?= $child['title'] ?>
             </div>
             <div class="left">
-                <php 
+                <?php
 
-                if($child['valTitle']==''){
+                if($child['value']==''){
                     echo '-';
                 }
                 else{
-                    echo $child['valTitle'];
+                    echo $child['value'];
                 }
 
                 ?>
@@ -72,9 +73,9 @@ foreach ($fanni as $attr_parent) {
             </div>
         </div>
 
-    <php  } ?>
+    <?php  } ?>
 
 
-<php  } ?>
+<?php  } ?>
 
 

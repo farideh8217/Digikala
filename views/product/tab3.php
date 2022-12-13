@@ -54,10 +54,10 @@
 
 <div id="comments_result" class="navbar">
 
-    <php 
+    <?php
 
     $comment_params = $data[0];
-    $comment_param_scores = $data[2];
+    //$comment_param_scores = $data[2];
    
 
     ?>
@@ -68,7 +68,7 @@
                         گوشی سامسونگ مدل xyz
                     </span>
     </p>
-    <php 
+    <?php
     foreach ($comment_params as $row) {
 
         $score = $comment_param_scores[$row['id']];
@@ -81,25 +81,25 @@
 
         <div class="row">
                     <span class="title">
-<=php $row['title']; ?>
+<?= $row['title']; ?>
                     </span>
             <ul>
-                <php  for ($i = 0; $i < $part1; $i++) { ?>
+                <?php  for ($i = 0; $i < $part1; $i++) { ?>
                     <li>
                         <span class="full"></span>
                     </li>
-                <php  } ?>
+                <?php  } ?>
 
-                <php  if ($part1 < 5) {
+                <?php  if ($part1 < 5) {
                     $num_li++;
                     ?>
                     <li>
                         <span style="width: <php  echo $part2 * 100; ?>%;"></span>
                     </li>
 
-                <php  } ?>
+                <?php  } ?>
 
-                <php 
+                <?php
                 $num_li_remain = 5 - $num_li;
                 for ($i = 0; $i < $num_li_remain; $i++) {
 
@@ -107,13 +107,13 @@
                     <li>
 
                     </li>
-                <php  } ?>
+                <?php  } ?>
 
             </ul>
 
         </div>
 
-    <php  } ?>
+    <?php  } ?>
 
 
 </div>
@@ -284,34 +284,34 @@
 
     <div class="horizental_row"></div>
 
-    <php 
+    <?php
 
     $comments = $data[1];
     foreach ($comments as $row) {
 
         ?>
 
-        <div id="comment<php  echo $row['id'] ?>" class="comment">
+        <div id="comment<?php  echo $row['id'] ?>" class="comment">
             <div class="comment_header">
                 <div class="right">
                             <span class="name" style="font-size: 12.8pt;">
                                 کلیک سایت
                             </span><span class="date" style="font-size: 9pt;">
-<=php $row['tarikh']; ?>
+<?= $row['tarikh']; ?>
                         </span>
                 </div>
                 <div class="left">
                             <span class="dislike">
   <i></i>
                                 <span>
-                                    <=php $row['dislikecount']; ?>
+                                    <?= $row['dislikecount']; ?>
                                 </span>
                             </span>
                             <span class="like">
 
                                 <i></i>
                                 <span>
-                                    <=php $row['likecount']; ?>
+                                    <?= $row['likecount']; ?>
                                 </span>
                             </span>
                             <span>
@@ -326,9 +326,9 @@
 
                     <div class="navbar">
 
-                        <php 
+                        <?php
                         $scores = unserialize($row['param']);
-                        array(1 => 3, 2 => 1, 3 => 4);
+                        //array(1 => 3, 2 => 1, 3 => 4);
 
                         foreach ($comment_params as $param) {
 
@@ -340,10 +340,10 @@
 
                             <div class="row">
                     <span class="title">
-<=php $param['title']; ?>
+<?= $param['title']; ?>
                     </span>
                                 <ul>
-                                    <php 
+                                    <?php
                                     for ($i = 0;
                                          $i < $score;
                                          $i++) {
@@ -351,21 +351,21 @@
                                         <li>
                                             <span class="full"></span>
                                         </li>
-                                    <php  } ?>
-                                    <php 
+                                    <?php  } ?>
+                                    <?php
                                     for ($i = 0;
                                          $i < 5 - $score;
                                          $i++) {
                                         ?>
                                         <li>
                                         </li>
-                                    <php  } ?>
+                                    <?php  } ?>
 
                                 </ul>
                             </div>
 
 
-                        <php  } ?>
+                        <?php  } ?>
 
 
                     </div>
@@ -376,7 +376,7 @@
                 <div class="left">
 
                     <div class="top">
-                        <=php $row['title']; ?>
+                        <?= $row['title']; ?>
                     </div>
 
                     <div class="center">
@@ -385,7 +385,7 @@
                                 نقاط قوت
                             </p>
                             <p>
-                                <=php $row['posotive']; ?>
+                                <?= $row['posotive']; ?>
                             </p>
                         </div>
                         <div class="zaaf">
@@ -393,13 +393,13 @@
                                 نقاط ضعف
                             </p>
                             <p>
-                                <=php $row['negative']; ?>
+                                <?= $row['negative']; ?>
                             </p>
                         </div>
                     </div>
 
                     <div class="bottom">
-                        <=php $row['matn']; ?>
+                        <?= $row['matn']; ?>
                     </div>
 
                 </div>
@@ -407,7 +407,7 @@
         </div>
 
 
-    <php  } ?>
+    <?php  } ?>
 
 </div>
 

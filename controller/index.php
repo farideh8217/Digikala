@@ -8,6 +8,7 @@ class index extends controller
 
     public function index()
     {
+
         $slider1 = $this->model->get_slider1();
         $slider2 = $this->model->get_slider2();
         $onlyclicksite = $this->model->onlyclicksite();

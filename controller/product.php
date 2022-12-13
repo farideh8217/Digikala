@@ -9,7 +9,31 @@ class product extends controller
     public function index($id)
     {
         $productinfo = $this->model->product_info($id);
-        $data = ['productinfo'=>$productinfo];
+        $onlyclicksite = $this->model->onlyclicksite();
+        $data = ['productinfo'=>$productinfo,'onlyclicksite'=>$onlyclicksite];
         $this->view("product/index",$data);
+    }
+    function tab($id,$id_category)//با ایجکس ایدی محصول را فرستاد
+    {
+        $number = $_POST['number'];
+        if($number==0){
+            $naghd = $this->model->naghd($id);
+            $data = [$naghd];
+            $this->view('product/tab1',$data,1,1);
+        }
+        if($number==1){
+            $fani = $this->model->fani($id_category,$id);
+            $data = [$fani];
+            $this->view('product/tab2',$data,1,1);
+        }
+        if($number==2){
+        $comment_param=$this->model->comment_param($id_category);
+        $get_comment = $this->get_comment($id);
+        $data = [$comment_param,$get_comment];
+        $this->view('product/tab3',$data,1,1);
+        }
+        if($number==3){
+        $this->view('product/tab4',[],1,1);
+        }
     }
 }

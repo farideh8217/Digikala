@@ -172,7 +172,7 @@
 <script>
     var canvasTag = document.getElementById('cv');
     var viewer = new JSC3D.Viewer(canvasTag, {
-        SceneUrl: 'public/images/products/<=php $productInfo['id'] ?>/3d/bmw.obj',
+        SceneUrl: 'public/images/products/<?= $productInfo['id'] ?>/3d/bmw.obj',
         InitRotationX: -100,
         InitRotationY: -100,
         InitRotationZ: 0,

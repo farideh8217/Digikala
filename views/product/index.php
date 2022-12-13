@@ -11,9 +11,9 @@
         }
     </style>
 
-
     <?php
     $productInfo=$data['productinfo'];
+
     if($productInfo['special']==1) {
         require('offer.php');
     }

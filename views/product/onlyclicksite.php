@@ -110,7 +110,7 @@
         <div class="sliderscroll_main">
             <ul>
 
-                <php 
+                <?php
 
                 $onlyclicksite=$data['onlyclicksite'];
                 foreach ($onlyclicksite as $row){
@@ -119,22 +119,22 @@
                 <li>
                     <a>
 
-                        <img style="width: 150px;" src="public/images/products/<=php $row['id']; ?>/product_220.jpg">
+                        <img style="width: 150px;" src="public/images/products/<?= $row['id']; ?>/product_220.jpg">
 
                         <img src="public/images/exclusive-blue.png">
 
                         <p class="yekan fontsm">
-<=php $row['title']; ?>
+                            <?= $row['title']; ?>
                         </p>
 
                         <p class="yekan price">
-                            <=php $row['price']; ?>
+                            <?= $row['price']; ?>
                         </p>
 
                     </a>
                 </li>
 
-                <php  } ?>
+                <?php  } ?>
 
             </ul>
 

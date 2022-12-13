@@ -8,4 +8,3 @@ require ('core/config.php');
 
 
 $a = new MyApp();
-?>

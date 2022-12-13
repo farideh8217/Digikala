@@ -35,7 +35,7 @@
 
 <div id="introduction" style="background: #fff;box-shadow: 0 1px 3px #eee;">
 
-    <=php $productInfo['introduction']; ?>
+    <?= $productInfo['introduction']; ?>
 
 </div>
 
