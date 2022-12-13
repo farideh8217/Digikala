@@ -63,7 +63,24 @@ class model_product extends Model{
 
     function fani($id,$id_category)
     {
-        
+        $sql = "SELECT * FROM tbl_attr where id_category=? and parent=0";
+        $result = $this->doselect($sql,[$id_category]);
+        $result["valed"] = $result;
+        foreach ($result as $key=>$row) {
+            $parent = $row["id"];
+            $sql = "SELECT * FROM tbl_attr where parent=?";
+            $result2 = $this->doselect($sql,[$parent]);
+            $result[$key]["children"] = $result2;
+            $result[$key]["title"]=$result2;
+            foreach ($result2 as $item) {
+                $attr_id = $item["id"];
+                $sql = "SELECT * FROM tbl_product_attr WHERE id_attr=? and id_product=?";
+                $param = [$attr_id,$id];
+                $result3 = $this->doselect($sql,$param);
+                $result[$key]["value"] = $result3;
+            }
+            return $result;
+        }
     }
 
     function comment_param($id_category)

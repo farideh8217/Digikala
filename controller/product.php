@@ -24,7 +24,7 @@ class product extends controller
             $this->view('product/tab1',$data,1,1);
         }
         if($number==1){
-            $fani = $this->model->fani($id_category,$id);
+            $fani = $this->model->fani($id,$id_category);
             $data = [$fani];
             $this->view('product/tab2',$data,1,1);
         }
