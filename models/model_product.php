@@ -29,43 +29,21 @@ class model_product extends Model{
         $date = date("F d,Y H:i:S",$time_end);
         $result['date_special'] = $date;
 
-
-        $colors = $result["colors"];
-        $colors = explode(",",$colors);
-        $colors = array_filter($colors);
-        $all_colors = [];
-        foreach ($colors as $color) {
-            $color_info = $this->color_info($color);
-            array_push($all_colors,$color_info);//مقداری را به ارایه اضافه کنیم
-        }
-        $result["all_colors"] = $all_colors;
-
-        //////////////////////////////////////////////////////////////////////////
-        $garantee = $result["garantee"];
-        $garantes = explode(",",$garantee);
-        $garantee = array_filter($garantes);
-        $all_garantee = [];
-        foreach ($garantee as $id_garantee) {
-            $garantee_info =$this->garantee_info($id_garantee);
-            array_push($all_garantee,$garantee_info);
-        }
-        $result["all_garantee"] = $all_garantee;
-
         return $result;
     }
 
 
     function garantee_info($id)
     {
-        $sql = "SELECT * FROM tbl_garantee WHERE id=?";
-        $result = $this->doSelect($sql,array($id),1);
+        $sql = "SELECT tbl_garantee.*,tbl_garantee_product.* FROM tbl_garantee INNER JOIN tbl_garantee_product ON tbl_garantee.id=tbl_garantee_product.id_garantee WHERE tbl_garantee_product.id_product=?";
+        $result = $this->doSelect($sql,array($id));
         return $result;
     }
 
     function color_info($id)
     {
-        $sql = "SELECT * FROM tbl_color WHERE id=?";
-        $result = $this->doSelect($sql,array($id),1);
+        $sql = "SELECT tbl_color.*,tbl_color_product.* FROM tbl_color INNER JOIN tbl_color_product ON tbl_color.id=tbl_color_product.id_color WHERE tbl_color_product.id_product=?";
+        $result = $this->doSelect($sql,array($id));
         return $result;
     }
 
@@ -85,16 +63,7 @@ class model_product extends Model{
 
     function fani($id,$id_category)
     {
-        $sql = "SELECT * FROM tbl_attr WHERE id_category=? and parent=0";
-        $result = $this->doSelect($sql,[$id_category]);
-        foreach ($result as $key=>$row) {
-            $sql = "SELECT tbl_attr.title,tbl_product_attr.value FROM tbl_attr left join tbl_product_attr ON
-            tbl_attr.id = tbl_product_attr.id_attr and tbl_product_attr.id_product=? where tbl_attr.parent=?";
-            $param = [$id,$row["id"]];
-            $result2 = $this->doSelect($sql,$param);
-            $result[$key]["children"] = $result2;
-        }
-        return $result;
+        
     }
 
     function comment_param($id_category)

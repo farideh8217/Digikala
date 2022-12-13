@@ -10,7 +10,9 @@ class product extends controller
     {
         $productinfo = $this->model->product_info($id);
         $onlyclicksite = $this->model->onlyclicksite();
-        $data = ['productinfo'=>$productinfo,'onlyclicksite'=>$onlyclicksite];
+        $color_product = $this->model->color_info($id);
+        $garantee_product = $this->model->garantee_info($id);
+        $data = ['productinfo'=>$productinfo,'onlyclicksite'=>$onlyclicksite,'color_product'=>$color_product,'garantee_product'=>$garantee_product];
         $this->view("product/index",$data);
     }
     function tab($id,$id_category)//با ایجکس ایدی محصول را فرستاد

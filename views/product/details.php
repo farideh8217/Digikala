@@ -253,7 +253,7 @@
 
             <ul class="colors">
                 <?php
-                    $all_colors = $productInfo['all_colors'];
+                    $all_colors = $data["color_product"];
                     foreach ($all_colors as $color) {
                 ?>
                     <li>
@@ -322,8 +322,6 @@
                     background: #f9f9ff;
 
                 }
-
-
             </style>
 
             <h4>انتخاب گارانتی</h4>
@@ -336,13 +334,11 @@
 
                 <ul>
                     <?php
-                            $all_garantee = $productInfo['all_garantee'];
+                            $all_garantee = $data["garantee_product"];
                             foreach ($all_garantee as $garantee) {
                             ?>
                         <li data-id="<?= $garantee['id']; ?>"><?= $garantee['title']; ?></li>
                         <?php  } ?>
-
-
 
                 </ul>
 
