@@ -39,7 +39,7 @@ class product extends controller
         if($number==3){
         $question = $this->model->get_question($id);
         $data = [$question];
-        $this->view('product/tab4',$question,1,1);
+        $this->view('product/tab4',$data,1,1);
         }
     }
 }

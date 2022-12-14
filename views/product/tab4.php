@@ -116,12 +116,11 @@
 
 <div id="questions_container" class="row">
 
-    <php 
+    <?php
 
     $questions = $data[0];
-    $answers = $data[1];
-    foreach ($questions as $row) {
 
+    foreach ($questions as $row) {
         ?>
 
 
@@ -134,7 +133,7 @@
                         </span>
 
                         <span class="date">
-<=php $row['tarikh']; ?>
+<?= $row['tarikh']; ?>
                         </span>
 
                         <span class="name">
@@ -149,7 +148,7 @@
             <div class="question_content">
 
                 <p>
-                    <=php $row['matn']; ?>
+                    <?= $row['matn']; ?>
                 </p>
 
             </div>
@@ -159,15 +158,13 @@
                     پاسخ:
                 </p>
 
-                <=php $answers[$row['id']]['matn']; ?>
+                <?= $row["childrens"]["matn"] ?>
 
             </div>
 
         </div>
 
-
-    <php  } ?>
-
+<?php } ?>
 </div>
 
 
