@@ -127,4 +127,12 @@ class model_product extends Model{
         }
         return $result;
     }
+
+    function get_gallery($id)
+    {
+        $sql = "SELECT * FROM tbl_gallery where id_product=?";
+        $param = [$id];
+        $result = $this->doSelect($sql,$param);
+        return $result;
+    }
 }

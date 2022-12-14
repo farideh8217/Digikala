@@ -137,26 +137,26 @@
         <ul>
 
 
-            <php 
+            <?php
 
             $gallery = $data['gallery'];
             foreach ($gallery as $row) {
                 ?>
 
-                <php  if ($row['threed'] == 1) { ?>
+                <?php  if ($row['threed'] == 1) { ?>
                     <li data-main-image="" style="position: relative;">
-                        <img src="public/images/products/<=php $row['idproduct'] ?>/gallery/small/<=php $row['img']; ?>">
+                        <img src="public/images/products/<?= $row['id_product'] ?>/gallery/small/<?= $row['img']; ?>">
                         <span class="icon3d"></span>
                     </li>
-                <php  } else { ?>
+                <?php  } else { ?>
 
-                    <li data-main-image="public/images/products/<=php $row['idproduct'] ?>/gallery/large/<=php $row['img']; ?>">
-                        <img src="public/images/products/<=php $row['idproduct'] ?>/gallery/small/<=php $row['img']; ?>">
+                    <li data-main-image="public/images/products/<?= $row['id_product'] ?>/gallery/large/<?= $row['img']; ?>">
+                        <img src="public/images/products/<?= $row['id_product'] ?>/gallery/small/<?= $row['img']; ?>">
                     </li>
 
-                <php  } ?>
+                <?php  } ?>
 
-            <php  } ?>
+            <?php  } ?>
 
 
         </ul>
