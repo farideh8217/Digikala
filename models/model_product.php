@@ -63,32 +63,47 @@ class model_product extends Model{
 
     function fani($id,$id_category)
     {
-        $sql = "SELECT * FROM tbl_attr where id_category=? and parent=0";
-        $result = $this->doselect($sql,[$id_category]);
-        $result["valed"] = $result;
+        $sql = "SELECT * FROM tbl_attr WHERE id_category=? and parent=0";
+        $result = $this->doSelect($sql,[$id_category]);
         foreach ($result as $key=>$row) {
-            $parent = $row["id"];
-            $sql = "SELECT * FROM tbl_attr where parent=?";
-            $result2 = $this->doselect($sql,[$parent]);
+            $sql = "SELECT tbl_attr.title,tbl_product_attr.value FROM tbl_attr left join tbl_product_attr ON
+            tbl_attr.id = tbl_product_attr.id_attr and tbl_product_attr.id_product=? where tbl_attr.parent=?";
+            $param = [$id,$row["id"]];
+            $result2 = $this->doSelect($sql,$param);
             $result[$key]["children"] = $result2;
-            $result[$key]["title"]=$result2;
-            foreach ($result2 as $item) {
-                $attr_id = $item["id"];
-                $sql = "SELECT * FROM tbl_product_attr WHERE id_attr=? and id_product=?";
-                $param = [$attr_id,$id];
-                $result3 = $this->doselect($sql,$param);
-                $result[$key]["value"] = $result3;
-            }
-            return $result;
         }
+        return $result;
     }
 
-    function comment_param($id_category)
+    function comment_param($id_category,$id)
     {
         $sql = "SELECT * FROM tbl_comment_param where id_category=?";
         $param = [$id_category];
         $result = $this->doSelect($sql,$param);
-        return $result;
+
+        $sql = "SELECT * FROM tbl_comment WHERE id_product=?";
+        $result2 = $this->doSelect($sql,[$id]);
+        $score_total = [];
+        foreach ($result2 as $row){
+            $param_score = $row["param"];
+            $param_score = unserialize($param_score);
+            foreach ($param_score as $key=>$value) {
+                $param_id = $key;
+                $score = $value;
+                if(!isset($score_total[$param_id])) {
+                    $score_total[$param_id] = 0;
+                }
+                $score_total[$param_id] = $score_total[$param_id]+$score;
+            }
+
+        }
+        $total_comment = sizeof($result2);
+        foreach ($score_total as $key=>$value){
+            $value = $value/$total_comment;
+            $score_total[$key] = $value;
+        }
+
+        return [$result,$score_total];
     }
 
     function get_comment($id)
@@ -99,4 +114,17 @@ class model_product extends Model{
         return $result;
     }
 
+    function get_question($id)
+    {
+        $sql = "SELECT * FROM tbl_question where id_product=? and parent=0";
+        $param = [$id];
+        $result = $this->doSelect($sql,$param);
+        foreach ($result as $key => $value) {
+            $sql = "SELECT * FROM tbl_question where parent=?";
+            $data = [$value["id"]];
+            $result2 = $this->doSelect($sql,$data,1);
+            $result[$key]["childrens"] = $result2;
+        }
+        return $result;
+    }
 }

@@ -57,7 +57,7 @@
     <?php
 
     $comment_params = $data[0];
-    //$comment_param_scores = $data[2];
+    $comment_param_scores = $data[2];
    
 
     ?>
@@ -81,7 +81,7 @@
 
         <div class="row">
                     <span class="title">
-<?= $row['title']; ?>
+                        <?= $row['title']; ?>
                     </span>
             <ul>
                 <?php  for ($i = 0; $i < $part1; $i++) { ?>
@@ -92,7 +92,7 @@
 
                 <?php  if ($part1 < 5) {
                     $num_li++;
-                    ?>
+                ?>
                     <li>
                         <span style="width: <php  echo $part2 * 100; ?>%;"></span>
                     </li>
@@ -328,6 +328,7 @@
 
                         <?php
                         $scores = unserialize($row['param']);
+
                         //array(1 => 3, 2 => 1, 3 => 4);
 
                         foreach ($comment_params as $param) {

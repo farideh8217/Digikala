@@ -29,13 +29,17 @@ class product extends controller
             $this->view('product/tab2',$data,1,1);
         }
         if($number==2){
-        $comment_param=$this->model->comment_param($id_category);
-        $get_comment = $this->get_comment($id);
-        $data = [$comment_param,$get_comment];
+        $comment_param=$this->model->comment_param($id_category,$id);
+        $comment_param_name = $comment_param[0];
+        $comment_param_score = $comment_param[1];
+        $get_comment = $this->model->get_comment($id);
+        $data = [$comment_param_name,$get_comment,$comment_param_score];
         $this->view('product/tab3',$data,1,1);
         }
         if($number==3){
-        $this->view('product/tab4',[],1,1);
+        $question = $this->model->get_question($id);
+        $data = [$question];
+        $this->view('product/tab4',$question,1,1);
         }
     }
 }
