@@ -1,17 +1,17 @@
-<php 
+<?php
 $activeMenu='category';
 require('views/admin/layout.php');
 $category = $data['category'];
-
-$categoryInfo = array();
-if (isset($data['categoryInfo'])) {
-    $categoryInfo = $data['categoryInfo'];
-}
-$parents = array();
-if (isset($data['parents'])) {
-    $parents = $data['parents'];
-    $parents = array_reverse($parents);
-}
+//
+//$categoryInfo = array();
+//if (isset($data['categoryInfo'])) {
+//    $categoryInfo = $data['categoryInfo'];
+//}
+//$parents = array();
+//if (isset($data['parents'])) {
+//    $parents = $data['parents'];
+//    $parents = array_reverse($parents);
+//}
 
 
 ?>
@@ -32,7 +32,7 @@ if (isset($data['parents'])) {
         (
         <php  foreach ($parents as $row) { ?>
 
-            <a href="admincategory/showchildren/<=php $row['id']; ?>">
+            <a href="admincategory/children_category/<=php $row['id']; ?>">
                 <=php $row['title']; ?>
             </a>
             -
@@ -96,30 +96,30 @@ if (isset($data['parents'])) {
             </td>
         </tr>
 
-        <php 
+        <?php
         foreach ($category as $row) {
 
             ?>
             <tr>
                 <td>
-                    <=php $row['id']; ?>
+                    <?= $row['id']; ?>
                 </td>
                 <td class="w200">
-                    <=php $row['title']; ?>
+                    <?= $row['title']; ?>
                 </td>
                 <td>
-                    <a href="admincategory/showchildren/<=php $row['id']; ?>">
+                    <a href="admincategory/showchildren/<?= $row['id']; ?>">
                         <img src="public/images/view_icon.png" class="view">
                     </a>
                 </td>
                 <td>
-                    <a href="admincategory/addcategory/<=php $row['id']; ?>/edit">
+                    <a href="admincategory/addcategory/<?= $row['id']; ?>/edit">
                         <img src="public/images/edit_icon.ico" class="view">
                     </a>
                 </td>
 
                 <td>
-                    <a href="admincategory/showattr/<=php $row['id']; ?>">
+                    <a href="admincategory/showattr/<?= $row['id']; ?>">
                         مشاهده
                     </a>
                 </td>
@@ -131,7 +131,7 @@ if (isset($data['parents'])) {
             </tr>
 
 
-        <php  } ?>
+        <?php  } ?>
 
     </table>
 
