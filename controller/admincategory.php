@@ -18,7 +18,7 @@ class admincategory extends controller {
         $this->view("admin/category/index",$data);
     }
 
-    function addcategory()
+    function addcategory($parenId)
     {
         if (isset($_POST["title"])){
             $title = $_POST["title"];
@@ -26,7 +26,7 @@ class admincategory extends controller {
             $this->model->add_category($title,$parent);
         }
         $category = $this->model->get_category();
-        $data = ["category"=>$category];
+        $data = ["category"=>$category,'parentId'=>$parenId];
         $this->view("admin/category/addcategory",$data);
     }
 }

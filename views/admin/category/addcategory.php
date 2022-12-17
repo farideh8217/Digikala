@@ -73,7 +73,7 @@ $categoryInfo=$data['categoryInfo'];
                 </option>
                 <?php
                 $category = $data['category'];
-//                $parentId = $data['parentId'];
+                $parentId = $data['parentId'];
 //                if($edit=='') {
 //                    $selectedId = $parentId;
 //                }else{
@@ -81,14 +81,14 @@ $categoryInfo=$data['categoryInfo'];
 //                }
 
                 foreach ($category as $row) {
-//                    if ($row['id'] == $selectedId) {
-//                        $x = 'selected';
-//                    } else {
-//                        $x = '';
-//                    }
+                    if($row["id"] == $parentId) {
+                        $x = 'selected';
+                    }else{
+                        $x = '';
+                    }
                     ?>
 
-                    <option value="<?= $row['id']; ?>">
+                    <option value="<?= $row['id']; ?>" <?= $x ?>>
                         <?= $row['title']?>
                     </option>
 
