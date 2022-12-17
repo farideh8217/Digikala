@@ -11,6 +11,13 @@ class model_admincategory extends Model{
         return $result;
     }
 
+    function category_info($id_category)
+    {
+        $sql = "select * from tbl_category WHERE id=?";
+        $result = $this->doSelect($sql,[$id_category],1);
+        return $result;
+    }
+
     function get_category_children($id_category)
     {
         $sql = "SELECT * FROM tbl_category where parent=?";
@@ -32,10 +39,14 @@ class model_admincategory extends Model{
         return $all_parent;
     }
 
-    function category_info($id_category)
+    function add_category($title,$parent)
     {
-        $sql = "select * from tbl_category WHERE id=?";
-        $result = $this->doSelect($sql,[$id_category]);
-        return $result;
+        $sql = "INSERT INTO `tbl_category` (`title`,`parent`) VALUES (?,?)";
+        $stmt = self::$conn->prepare($sql);
+        $stmt->bindValue(1,$title);
+        $stmt->bindParam(2,$parent);
+        $stmt->execute();
     }
+
+
 }

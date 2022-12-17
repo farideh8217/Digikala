@@ -1,17 +1,18 @@
 <?php
 $activeMenu='category';
 require('views/admin/layout.php');
+
 $category = $data['category'];
-//
-//$categoryInfo = array();
-//if (isset($data['categoryInfo'])) {
-//    $categoryInfo = $data['categoryInfo'];
-//}
-//$parents = array();
-//if (isset($data['parents'])) {
-//    $parents = $data['parents'];
-//    $parents = array_reverse($parents);
-//}
+
+$categoryInfo = [];
+if (isset($data['categoryInfo'])) {
+    $categoryInfo = $data['categoryInfo'];
+}
+$parents = [];
+if (isset($data['parents'])) {
+    $parents = $data['parents'];
+    $parents = array_reverse($parents);
+}
 
 
 ?>
@@ -30,22 +31,22 @@ $category = $data['category'];
         مدیریت دسته ها
 
         (
-        <php  foreach ($parents as $row) { ?>
+        <?php foreach ($parents as $row) { ?>
 
-            <a href="admincategory/children_category/<=php $row['id']; ?>">
-                <=php $row['title']; ?>
+            <a href="admincategory/showchildren/<?= $row['id']; ?>">
+                <?= $row['title']; ?>
             </a>
             -
 
-        <php  } ?>
+        <?php } ?>
 
 
-        <a href="admincategory/<php  if (isset($categoryInfo['id'])) {
+        <a href="admincategory/<?php if (isset($categoryInfo['id'])) {
             echo 'showchildren/' . $categoryInfo['id'];
         } else {
             echo 'index';
         } ?>">
-            <php 
+            <?php
             if (isset($categoryInfo['title'])) {
 
                 echo $categoryInfo['title'];
@@ -61,81 +62,81 @@ $category = $data['category'];
     </p>
 
 
-    <a class="btn_green_small" href="admincategory/addcategory/<=php @$categoryInfo['id']; ?>">
+    <a class="btn_green_small" href="admincategory/addcategory/<?= @$categoryInfo['id']; ?>">
         افزودن
     </a>
 
     <a class="btn_red_small" onclick="submitForm();">
-حذف
+        حذف
     </a>
 
-    <form action="admincategory/deletecategory/<=php @$categoryInfo['id'];  ?>" method="post">
+    <form action="admincategory/deletecategory/<?= @$categoryInfo['id'];  ?>" method="post">
 
-    <table class="list" cellspacing="0">
+        <table class="list" cellspacing="0">
 
-        <tr>
-            <td>
-                ردیف
-            </td>
-            <td>
-                عنوان دسته
-            </td>
-            <td>
-                مشاهده زیردسته ها
-            </td>
-
-            <td>
-                ویرایش
-            </td>
-            <td>
-                ویژگی ها
-            </td>
-
-            <td>
-                انتخاب
-            </td>
-        </tr>
-
-        <?php
-        foreach ($category as $row) {
-
-            ?>
             <tr>
                 <td>
-                    <?= $row['id']; ?>
-                </td>
-                <td class="w200">
-                    <?= $row['title']; ?>
+                    ردیف
                 </td>
                 <td>
-                    <a href="admincategory/showchildren/<?= $row['id']; ?>">
-                        <img src="public/images/view_icon.png" class="view">
-                    </a>
+                    عنوان دسته
                 </td>
                 <td>
-                    <a href="admincategory/addcategory/<?= $row['id']; ?>/edit">
-                        <img src="public/images/edit_icon.ico" class="view">
-                    </a>
+                    مشاهده زیردسته ها
                 </td>
 
                 <td>
-                    <a href="admincategory/showattr/<?= $row['id']; ?>">
-                        مشاهده
-                    </a>
+                    ویرایش
+                </td>
+                <td>
+                    ویژگی ها
                 </td>
 
                 <td>
-
-                    <input type="checkbox" name="id[]" value="<=php $row['id']; ?>">
+                    انتخاب
                 </td>
             </tr>
 
+            <?php
+            foreach ($category as $row) {
 
-        <?php  } ?>
+                ?>
+                <tr>
+                    <td>
+                        <?= $row['id']; ?>
+                    </td>
+                    <td class="w200">
+                        <?= $row['title']; ?>
+                    </td>
+                    <td>
+                        <a href="admincategory/showchildren/<?= $row['id']; ?>">
+                            <img src="public/images/view_icon.png" class="view">
+                        </a>
+                    </td>
+                    <td>
+                        <a href="admincategory/addcategory/<?= $row['id']; ?>/edit">
+                            <img src="public/images/edit_icon.ico" class="view">
+                        </a>
+                    </td>
 
-    </table>
+                    <td>
+                        <a href="admincategory/showattr/<?= $row['id']; ?>">
+                            مشاهده
+                        </a>
+                    </td>
 
-        </form>
+                    <td>
+
+                        <input type="checkbox" name="id[]" value="<?= $row['id']; ?>">
+                    </td>
+                </tr>
+
+
+            <?php } ?>
+
+        </table>
+
+    </form>
 
 </div>
 

@@ -57,7 +57,8 @@ $categoryInfo=$data['categoryInfo'];
         <span class="span_title">
 عنوان دسته:
         </span>
-            <input type="text" name="title" value="<php  if($edit==''){}else{echo $categoryInfo['title'];} ?>">
+<!--            <php  if($edit==''){}else{echo $categoryInfo['title'];} ?>-->
+            <input type="text" name="title" value="">
 
         </div>
         <div class="row">
@@ -70,35 +71,36 @@ $categoryInfo=$data['categoryInfo'];
                 <option>
                     انتخاب کنید
                 </option>
-                <php 
+                <?php
                 $category = $data['category'];
-                $parentId = $data['parentId'];
-                if($edit=='') {
-                    $selectedId = $parentId;
-                }else{
-                    $selectedId=$categoryInfo['parent'];
-                }
+//                $parentId = $data['parentId'];
+//                if($edit=='') {
+//                    $selectedId = $parentId;
+//                }else{
+//                    $selectedId=$categoryInfo['parent'];
+//                }
 
                 foreach ($category as $row) {
-                    if ($row['id'] == $selectedId) {
-                        $x = 'selected';
-                    } else {
-                        $x = '';
-                    }
+//                    if ($row['id'] == $selectedId) {
+//                        $x = 'selected';
+//                    } else {
+//                        $x = '';
+//                    }
                     ?>
 
-                    <option value="<=php $row['id']; ?>"  <=php $x ?>>
-                        <=php $row['title']?>
+                    <option value="<?= $row['id']; ?>">
+                        <?= $row['title']?>
                     </option>
 
-                <php  } ?>
+                <?php  } ?>
             </select>
 
         </div>
+        <button name="bb" >ggggg</button>
 
-        <a class="btn_green_small" onclick="submitForm();" style="cursor: pointer;">
-            اجرای عملیات
-        </a>
+<!--        <a class="btn_green_small" onclick="submitForm();" style="cursor: pointer;">-->
+<!--            اجرای عملیات-->
+<!--        </a>-->
 
     </form>
 
