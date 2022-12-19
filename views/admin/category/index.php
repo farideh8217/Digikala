@@ -1,18 +1,7 @@
 <?php
 $activeMenu='category';
 require('views/admin/layout.php');
-
-$category = $data['category'];
-
-$categoryInfo = [];
-if (isset($data['categoryInfo'])) {
-    $categoryInfo = $data['categoryInfo'];
-}
-$parents = [];
-if (isset($data['parents'])) {
-    $parents = $data['parents'];
-    $parents = array_reverse($parents);
-}
+$parent_category = $data["parentcategory"];
 
 
 ?>
@@ -31,22 +20,22 @@ if (isset($data['parents'])) {
         مدیریت دسته ها
 
         (
-        <?php foreach ($parents as $row) { ?>
+        <=?php foreach ($parents as $row) { ?>
 
             <a href="admincategory/showchildren/<?= $row['id']; ?>">
                 <?= $row['title']; ?>
             </a>
             -
 
-        <?php } ?>
+        <=?php } ?>
 
 
-        <a href="admincategory/<?php if (isset($categoryInfo['id'])) {
+        <a href="admincategory/<=?php if (isset($categoryInfo['id'])) {
             echo 'showchildren/' . $categoryInfo['id'];
         } else {
             echo 'index';
         } ?>">
-            <?php
+            <=?php
             if (isset($categoryInfo['title'])) {
 
                 echo $categoryInfo['title'];
@@ -97,16 +86,16 @@ if (isset($data['parents'])) {
                 </td>
             </tr>
 
-            <?php
+            <=?php
             foreach ($category as $row) {
 
                 ?>
                 <tr>
                     <td>
-                        <?= $row['id']; ?>
+                        ? $row['id']; ?>
                     </td>
                     <td class="w200">
-                        <?= $row['title']; ?>
+                        ?= $row['title']; ?>
                     </td>
                     <td>
                         <a href="admincategory/showchildren/<?= $row['id']; ?>">
@@ -132,7 +121,7 @@ if (isset($data['parents'])) {
                 </tr>
 
 
-            <?php } ?>
+            <=?php } ?>
 
         </table>
 

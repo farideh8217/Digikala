@@ -4,29 +4,16 @@ class admincategory extends controller {
     {
     }
     function index(){
-        $getcategory = $this->model->get_category_children(0);
-        $data = ['category'=>$getcategory];
+        $category = $this->model->get_category();
+        $data = ['parentcategory'=>$category];
         $this->view("admin/category/index",$data);
     }
 
     function showchildren($id_category)
     {
-        $categoryinfo = $this->model->category_info($id_category);
-        $children = $this->model->get_category_children($id_category);
-        $parents = $this->model->get_parent($id_category);
-        $data = ['categoryInfo'=>$categoryinfo,'category'=>$children,'parents'=>$parents];
+        $showchildren = $this->model->category_chidren($id_category);
+        $data = ["parentcategory"=>$showchildren];
+        $parent =
         $this->view("admin/category/index",$data);
-    }
-
-    function addcategory($parenId)
-    {
-        if (isset($_POST["title"])){
-            $title = $_POST["title"];
-            $parent = $_POST["parent"];
-            $this->model->add_category($title,$parent);
-        }
-        $category = $this->model->get_category();
-        $data = ["category"=>$category,'parentId'=>$parenId];
-        $this->view("admin/category/addcategory",$data);
     }
 }
