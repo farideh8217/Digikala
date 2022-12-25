@@ -1,8 +1,18 @@
 <?php
 $activeMenu='category';
 require('views/admin/layout.php');
-$parent_category = $data["parentcategory"];
+$category = $data["category"];
 
+
+$parent_category = [];
+ if (isset($data["parentcategory"])) {
+     $parent_category = $data["parentcategory"];
+     $parent_category = array_reverse($parent_category);
+ }
+$categoryInfo = [];
+if (isset($data["categoryinfo"])) {
+    $categoryInfo = $data["categoryinfo"];
+}
 
 ?>
 <style>
@@ -20,32 +30,31 @@ $parent_category = $data["parentcategory"];
         مدیریت دسته ها
 
         (
-        <=?php foreach ($parents as $row) { ?>
+        <?php foreach ($parent_category as $row) { ?>
 
-            <a href="admincategory/showchildren/<?= $row['id']; ?>">
-                <?= $row['title']; ?>
-            </a>
+          <a href="admincategory/showchildren/<?= $row["id"] ?>">
+              <?= $row["title"] ?>
+          </a>
             -
 
-        <=?php } ?>
+        <?php } ?>
 
 
-        <a href="admincategory/<=?php if (isset($categoryInfo['id'])) {
+        <a href="admincategory/<?php if (isset($categoryInfo['id'])) {
             echo 'showchildren/' . $categoryInfo['id'];
         } else {
             echo 'index';
         } ?>">
-            <=?php
+            <?php
             if (isset($categoryInfo['title'])) {
-
                 echo $categoryInfo['title'];
             } else {
                 echo 'دسته های اصلی';
             }
             ?>
 
-
         </a>
+
         )
 
     </p>
@@ -86,16 +95,17 @@ $parent_category = $data["parentcategory"];
                 </td>
             </tr>
 
-            <=?php
+            <?php
             foreach ($category as $row) {
+
 
                 ?>
                 <tr>
                     <td>
-                        ? $row['id']; ?>
+                        <?= $row['id']; ?>
                     </td>
                     <td class="w200">
-                        ?= $row['title']; ?>
+                        <?= $row['title']; ?>
                     </td>
                     <td>
                         <a href="admincategory/showchildren/<?= $row['id']; ?>">
@@ -121,7 +131,7 @@ $parent_category = $data["parentcategory"];
                 </tr>
 
 
-            <=?php } ?>
+            <?php } ?>
 
         </table>
 

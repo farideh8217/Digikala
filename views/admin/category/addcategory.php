@@ -1,8 +1,10 @@
-<php 
+<?php
 require('views/admin/layout.php');
 
-$edit=$data['edit'];
-$categoryInfo=$data['categoryInfo'];
+
+
+//$edit=$data['edit'];
+
 
 
 ?>
@@ -50,7 +52,7 @@ $categoryInfo=$data['categoryInfo'];
             }
         </style>
 
-    <form action="admincategory/addcategory/<=php $categoryInfo['id']; ?>/<=php $edit; ?>" method="post">
+    <form action="admincategory/addcategory" method="POST">
 
         <div class="row">
 
@@ -66,41 +68,27 @@ $categoryInfo=$data['categoryInfo'];
         <span class="span_title">
 دسته والد:
         </span>
-            <select name="parent" autocomplete="off">
-
-                <option>
-                    انتخاب کنید
-                </option>
-                <?php
-                $category = $data['category'];
-                $parentId = $data['parentId'];
-//                if($edit=='') {
-//                    $selectedId = $parentId;
-//                }else{
-//                    $selectedId=$categoryInfo['parent'];
-//                }
-
-                foreach ($category as $row) {
-                    if($row["id"] == $parentId) {
-                        $x = 'selected';
-                    }else{
-                        $x = '';
-                    }
-                    ?>
-
-                    <option value="<?= $row['id']; ?>" <?= $x ?>>
-                        <?= $row['title']?>
-                    </option>
-
-                <?php  } ?>
+            <select name="parent" >
+<!--                --><?php //$all_category = $data["allcategory"] ;
+//                    foreach ($all_category as $category_item){?>
+<!--                        <option --><?php //if ($allcategory_item["id"] == $parentid) print "selected" ?><!-->-->
+<!--                            --><?//= $category_item["title"] ?>
+<!--                        </option>-->
+<!--                   --><?php //} ?>
             </select>
 
         </div>
-        <button name="bb" >ggggg</button>
 
-<!--        <a class="btn_green_small" onclick="submitForm();" style="cursor: pointer;">-->
-<!--            اجرای عملیات-->
-<!--        </a>-->
+
+        <button name="submit">اجرای عملیات</button>
+        <h4>
+            <?php
+            $error = [];
+            if (isset($data["error"])) {
+                $error = $data["error"];
+                echo $error;
+            } ?>
+        </h4>
 
     </form>
 
