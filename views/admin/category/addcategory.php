@@ -1,22 +1,26 @@
 <?php
 require('views/admin/layout.php');
 
+$edit = [];
+if (isset($data["edit"])) {
+    $edit = $data["edit"];
+}
 
-
-//$edit=$data['edit'];
-
-
+$categoryInfo = [];
+if (isset($data["category_info"])) {
+    $categoryInfo = $data["category_info"];
+}
 
 ?>
 <div class="left">
 
     <p class="title">
-        <php  if($edit==''){ ?>
+        <?php  if($edit==''){ ?>
         ایجاد دسته جدید
 
-        <php  }else{ ?>
+        <?php  }else{ ?>
         ویرایش دسته
-        <php  } ?>
+        <?php  } ?>
 
         <style>
             .row {
@@ -52,15 +56,15 @@ require('views/admin/layout.php');
             }
         </style>
 
-    <form action="admincategory/addcategory" method="POST">
+    <form action="admincategory/addcategory/<?php if(isset($categoryInfo['id'])) echo $categoryInfo['id'] ?>/<?php if (isset($edit)) echo $edit?>" method="POST">
 
         <div class="row">
 
         <span class="span_title">
 عنوان دسته:
         </span>
-<!--            <php  if($edit==''){}else{echo $categoryInfo['title'];} ?>-->
-            <input type="text" name="title" value="">
+
+            <input type="text" name="title" value="<?php if($edit==''){}else{ if (isset($categoryInfo['title'])) echo $categoryInfo['title'];}?>">
 
         </div>
         <div class="row">
@@ -69,16 +73,18 @@ require('views/admin/layout.php');
 دسته والد:
         </span>
             <select name="parent" >
-<!--                --><?php //$all_category = $data["allcategory"] ;
-//                    foreach ($all_category as $category_item){?>
-<!--                        <option --><?php //if ($allcategory_item["id"] == $parentid) print "selected" ?><!-->-->
-<!--                            --><?//= $category_item["title"] ?>
-<!--                        </option>-->
-<!--                   --><?php //} ?>
+                <?php $all_category = $data["allcategory"];
+                      $parentid = $data["parenId"];
+                      if($edit == "") {
+                          $selected = $parentid;
+                      }else{
+                          $selected = $category_info["parent"];
+                      }
+                    foreach ($all_category as $category_item){?>
+                    <option <?php if ($category_item["id"] == $selected) print "selected"; ?> value="<?= $category_item["id"]?>" ><?= $category_item["title"] ?></option>
+                <?php } ?>
             </select>
-
         </div>
-
 
         <button name="submit">اجرای عملیات</button>
         <h4>
@@ -94,8 +100,6 @@ require('views/admin/layout.php');
 
 
 </div>
-
-
 </div>
 
 

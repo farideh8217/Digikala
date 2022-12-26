@@ -18,7 +18,7 @@ class admincategory extends controller {
         $this->view("admin/category/index",$data);
     }
 
-    function addcategory($parenId = 0){
+    function addcategory($parenId = 0,$edit=""){
 
         if(isset($_POST["title"],$_POST["parent"])) {
             $title = $_POST["title"];
@@ -29,15 +29,19 @@ class admincategory extends controller {
                 $this->view("admin/category/addcategory",$data);
                 exit();
             }else {
-                $add_category = $this->model->add_category($title, $parent);
-                $error = "اطلاعات با موفقیت درج شد";
-                $data = ["error" => $error];
-                $this->view("admin/category/addcategory", $data);
+                $add_category = $this->model->add_category($title, $parent,$edit,$parenId);
+                if(isset($insert) && $insert == true) {
+                    $error = "اطلاعات با موفقیت درج شد";
+                }else{
+                    $error = "اطلاعات با موفقیت ویرایش شد";
+                }
+                    $data = ["error" => $error];
+                    $this->view("admin/category/addcategory", $data);
             }
         }
         $all_category = $this->model->all_category();
         $category_info = $this->model->category_info($parenId);
-        $data = ["allcategory"=>$all_category,"parenId"=>$parenId];
+        $data = ["allcategory"=>$all_category,"parenId"=>$parenId,"edit"=>$edit,"category_info"=>$category_info];
         $this->view("admin/category/addcategory",$data);
     }
 }

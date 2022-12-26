@@ -42,12 +42,23 @@ class model_admincategory extends Model{
         return $result;
     }
 
-    function add_category($title,$parent)
+    function add_category($title,$parent,$edit,$parentId)
     {
-        $sql = "INSERT INTO `tbl_category`(`title`, `parent`) VALUES (?,?)";
-        $stmt = self::$conn->prepare($sql);
-        $stmt->bindParam(1,$title);
-        $stmt->bindParam(2,$parent);
-        $stmt->execute();
+        if($edit == "") {
+            $sql = "INSERT INTO `tbl_category`(`title`, `parent`) VALUES (?,?)";
+            $stmt = self::$conn->prepare($sql);
+            $stmt->bindParam(1,$title);
+            $stmt->bindParam(2,$parent);
+            $insert = $stmt->execute();
+            return $insert;
+        }else{
+            $sql = "UPDATE `tbl_category` SET `title`=?,`parent`=? where id=?";
+            $stmt = self::$conn->prepare($sql);
+            $stmt->bindParam(1, $title);
+            $stmt->bindParam(2, $parent);
+            $stmt->bindParam(3, $parentId);
+            $update = $stmt->execute();
+            return $update;
+        }
     }
 }
