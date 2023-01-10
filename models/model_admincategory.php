@@ -1,5 +1,8 @@
 <?php
 class model_admincategory extends Model{
+
+    public $allchildrenIds = [];
+
     public function __construct()
     {
         parent::__construct();
@@ -60,5 +63,32 @@ class model_admincategory extends Model{
             $update = $stmt->execute();
             return $update;
         }
+    }
+
+    function get_childs($ids){
+        $childrenId = [];
+        foreach ($ids as $id) {
+            $children = $this->get_children($id);
+            foreach ($children as $child){
+                array_push($childrenId,$child["id"]);
+            }
+        }
+        return $childrenId;
+    }
+    function delete_category($ids=[])
+    {
+        $this->allchildrenIds = array_merge($this->allchildrenIds, $ids);
+        while (sizeof($ids) > 0){
+            $childrenIds = $this->get_childs($ids);
+            $this->allchildrenIds = array_merge($this->allchildrenIds, $childrenIds);
+            $ids = $childrenIds;
+        }
+
+        $x = implode(",",$this->allchildrenIds);
+
+        $sql = "DELETE  FROM tbl_category WHERE id IN (" . $x . ")";
+        var_dump($sql);
+        $stmt = self::$conn->prepare($sql);
+        $stmt->execute();
     }
 }

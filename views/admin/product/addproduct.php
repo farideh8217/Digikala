@@ -1,15 +1,17 @@
 <script src="public/ckeditor/ckeditor.js"></script>
 
-<php 
+<?php
 require('views/admin/layout.php');
 
 $productInfo = $data['productInfo'];
 
-$edit = 0;
+$productId = $data["productId"];
 
-if (isset($productInfo['title'])) {
-    $edit = 1;
-}
+//$edit = 0;
+//
+//if (isset($productInfo['title'])) {
+//    $edit = 1;
+//}
 
 
 ?>
@@ -83,14 +85,14 @@ if (isset($productInfo['title'])) {
             }
         </style>
 
-    <form action="adminproduct/addproduct/<=php @$productInfo['id']; ?>" method="post" enctype="multipart/form-data">
+    <form action="adminproduct/addproduct/<?= @$productInfo['id']; ?>" method="post" enctype="multipart/form-data">
 
         <div class="row">
 
         <span class="span_title">
 عنوان محصول:
         </span>
-            <input type="text" name="title" value="<=php @$productInfo['title']; ?>">
+            <input type="text" name="title" value="<?= @$productInfo["title"]?>">
 
         </div>
         <div class="row">
@@ -99,7 +101,7 @@ if (isset($productInfo['title'])) {
 دسته والد:
         </span>
 
-            <php 
+            <?php
 
             $category = $data['category'];
             $categoryId = @$productInfo['cat'];
@@ -111,7 +113,7 @@ if (isset($productInfo['title'])) {
                 <option>
                     انتخاب کنید
                 </option>
-                <php 
+                <?php
                 foreach ($category as $row) {
 
                     if ($row['id'] == $categoryId) {
@@ -122,11 +124,11 @@ if (isset($productInfo['title'])) {
 
                     ?>
 
-                    <option value="<=php $row['id']; ?>" <=php $selected; ?>>
-                        <=php $row['title'] ?>
+                    <option value="<?= $row['id']; ?>" <?= $selected; ?>>
+                        <?= $row['title'] ?>
                     </option>
 
-                <php  } ?>
+                <?php  } ?>
             </select>
 
         </div>
@@ -136,7 +138,7 @@ if (isset($productInfo['title'])) {
         <span class="span_title">
 قیمت:
         </span>
-            <input type="text" name="price" value="<=php @$productInfo['price']; ?>">
+            <input type="text" name="price" value="<?= @$productInfo['price']; ?>">
 
         </div>
         <div class="row">
@@ -157,7 +159,7 @@ if (isset($productInfo['title'])) {
         <span class="span_title">
 معرفی اجمالی:
         </span>
-            <textarea class="editor1" id="editor1" name="introduction"><=php @$productInfo['introduction']; ?></textarea>
+            <textarea class="editor1" id="editor1" name="introduction"><?= @$productInfo['introduction']; ?></textarea>
 
         </div>
 
@@ -173,7 +175,7 @@ if (isset($productInfo['title'])) {
         <span class="span_title">
 تعداد موجود:
         </span>
-            <input type="text" name="tedad_mojood" value="<=php @$productInfo['tedad_mojood']; ?>">
+            <input type="text" name="tedad_mojood" value="<?= @$productInfo['tedad_mojood']; ?>">
 
         </div>
 
@@ -182,7 +184,7 @@ if (isset($productInfo['title'])) {
         <span class="span_title">
 میزان تخفیف(%):
         </span>
-            <input type="text" name="discount" value="<=php @$productInfo['discount']; ?>">
+            <input type="text" name="discount" value="<?= @$productInfo['discount']; ?>">
 
         </div>
 
@@ -193,7 +195,7 @@ if (isset($productInfo['title'])) {
 انتخاب رنگ:
         </span>
 
-            <php 
+            <?php
 
             $color = $data['color'];
 
@@ -204,17 +206,17 @@ if (isset($productInfo['title'])) {
                 <option>
                     انتخاب کنید
                 </option>
-                <php 
+                <?php
                 foreach ($color as $row) {
 
                     ?>
-                    <option data-title="<php  echo $row['title']; ?>"
-                            onclick=addColor(this,"<php  echo $row['id']; ?>","<php  echo $row['hex']; ?>")
-                            value="<=php $row['id']; ?>">
-                        <=php $row['title'] ?>
+                    <option data-title="<?php  echo $row['title']; ?>"
+                            onclick=addColor(this,"<?php  echo $row['id']; ?>","<?php  echo $row['hex']; ?>")
+                            value="<?= $row['id']; ?>">
+                        <?= $row['title'] ?>
                     </option>
 
-                <php  } ?>
+                <?php  } ?>
 
 
             </select>
@@ -243,7 +245,7 @@ if (isset($productInfo['title'])) {
         :
         </span>
 
-            <php 
+            <?php
 
             $garantee = $data['garantee'];
 
@@ -253,17 +255,17 @@ if (isset($productInfo['title'])) {
                 <option>
                     انتخاب کنید
                 </option>
-                <php 
+                <?php
                 foreach ($garantee as $row) {
 
                     ?>
-                    <option data-title="<php  echo $row['title']; ?>"
-                            onclick=addGarantee(this,'<php  echo $row['id']; ?>')
-                            value="<=php $row['id']; ?>">
-                        <=php $row['title'] ?>
+                    <option data-title="<?php  echo $row['title']; ?>"
+                            onclick=addGarantee(this,'<?php  echo $row['id']; ?>')
+                            value="<?= $row['id']; ?>">
+                        <?= $row['title'] ?>
                     </option>
 
-                <php  } ?>
+                <?php  } ?>
             </select>
 
             <php 

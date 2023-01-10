@@ -1,9 +1,8 @@
-<php 
+<?php
 $activeMenu='product';
 require('views/admin/layout.php');
 
 $products = $data['product'];
-
 
 ?>
 <style>
@@ -68,26 +67,26 @@ $products = $data['product'];
                 </td>
             </tr>
 
-            <php 
+            <?php
             foreach ($products as $row) {
 
                 ?>
                 <tr>
                     <td>
-                        <=php $row['id']; ?>
+                        <?= $row['id']; ?>
                     </td>
                     <td>
-                        <=php $row['title']; ?>
+                        <?= $row['title']; ?>
                     </td>
                     <td>
-                        <=php $row['price']; ?>
+                        <?= $row['price']; ?>
                     </td>
                     <td>
-                        <=php $row['discount']; ?>
+                        <?= $row['discount']; ?>
                     </td>
 
                     <td>
-                        <a href="adminproduct/addproduct/<=php $row['id']; ?>">
+                        <a href="adminproduct/addproduct/<?= $row['id']; ?>">
                             <img src="public/images/edit_icon.ico" class="view">
                         </a>
                     </td>
@@ -115,7 +114,7 @@ $products = $data['product'];
                 </tr>
 
 
-            <php  } ?>
+            <?php  } ?>
 
         </table>
 

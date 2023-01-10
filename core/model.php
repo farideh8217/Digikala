@@ -3,17 +3,7 @@ class Model{
     public static $conn ='';
     public function __construct()
     {
-        $database = [
-            'host'=>'localhost',
-            'dbname'=>'digikala',
-            'user'=>'root',
-            'pass'=>''
-        ];
-        try {
-            self::$conn = new PDO("mysql:host={$database['host']};dbname={$database['dbname']}", $database['user'], $database['pass']);
-        } catch (PDOException $e) {
-            exit("An error happend, Error: " . $e->getMessage());
-        }
+
     }
 
     public static function get_option()//چون فوتر در همه ی قسمت ها هست ما فانکشن را اینجا مینویسیم که درهمه ی صفحات تکرار نشه
@@ -52,5 +42,14 @@ class Model{
             $result = $stmt->fetch($fetchStyle);
         }
         return $result;
+    }
+
+    function doquery($sql, $values = array())
+    {
+        $stmt = self::$conn->prepare($sql);
+        foreach ($values as $key => $value) {
+            $stmt->bindValue($key + 1, $value);
+        }
+        $stmt->execute();
     }
 }

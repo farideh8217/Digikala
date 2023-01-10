@@ -60,7 +60,8 @@ if (isset($data["categoryinfo"])) {
     </p>
 
 
-    <a class="btn_green_small" href="admincategory/addcategory/<?= @$categoryInfo['id']; ?>">
+    <form action="admincategory/deletecategory/" method="post">
+    <a class="btn_green_small" href="">
         افزودن
     </a>
 
@@ -68,7 +69,7 @@ if (isset($data["categoryinfo"])) {
         حذف
     </a>
 
-    <form action="admincategory/deletecategory/<?= @$categoryInfo['id'];  ?>" method="post">
+
 
         <table class="list" cellspacing="0">
 

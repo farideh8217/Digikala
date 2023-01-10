@@ -9,7 +9,7 @@ class admincategory extends controller {
         $this->view("admin/category/index",$data);
     }
 
-    function showchildren($id_category)
+    function showchildren($id_category=0)
     {
         $category_children = $this->model->get_children($id_category);
         $parent_category = $this->model->get_parent_category($id_category);
@@ -43,5 +43,12 @@ class admincategory extends controller {
         $category_info = $this->model->category_info($parenId);
         $data = ["allcategory"=>$all_category,"parenId"=>$parenId,"edit"=>$edit,"category_info"=>$category_info];
         $this->view("admin/category/addcategory",$data);
+    }
+
+    function deletecategory()
+    {
+        $ids = $_POST["id"];
+        $deletecategory = $this->model->delete_category($ids);
+        header("Location: ".URL."admincategory");
     }
 }
